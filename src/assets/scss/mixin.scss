@@ -1,0 +1,58 @@
+@use "./variables";
+
+@mixin screen-max-width-1920 {
+  @media (max-width: variables.$max-width-1920) {
+    @content;
+  }
+}
+
+@mixin screen-max-width-1650 {
+  @media (max-width: variables.$max-width-1650) {
+    @content;
+  }
+}
+@mixin screen-max-width-1500 {
+  @media (max-width: variables.$max-width-1500) {
+    @content;
+  }
+}
+@mixin screen-max-width-1400 {
+  @media (max-width: variables.$max-width-1400) {
+    @content;
+  }
+}
+
+@mixin screen-max-width-1300 {
+  @media (max-width: variables.$max-width-1300) {
+    @content;
+  }
+}
+
+@mixin screen-max-width-1200 {
+  @media (max-width: variables.$max-width-1200) {
+    @content;
+  }
+}
+
+@mixin screen-max-width-991 {
+  @media (max-width: variables.$max-width-991) {
+    @content;
+  }
+}
+
+@mixin screen-max-width-767 {
+  @media (max-width: variables.$max-width-767) {
+    @content;
+  }
+}
+
+@mixin screen-max-width-576 {
+  @media (max-width: variables.$max-width-576) {
+    @content;
+  }
+}
+@mixin screen-max-width-400 {
+  @media (max-width: variables.$max-width-400) {
+    @content;
+  }
+}
