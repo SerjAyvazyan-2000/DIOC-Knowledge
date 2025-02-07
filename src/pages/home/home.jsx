@@ -30,9 +30,17 @@ import IconDataNull from '../../assets/images/IconDataNull.svg'
 import IconSpeed from '../../assets/images/IconSpeed.svg'
 import rateIcon from '../../assets/images/rateIcon.svg'
 import rateDecor from '../../assets/images/rateDecor.png'
+import faqDecor1 from '../../assets/images/faqDeco1.png'
+import faqDecor2 from '../../assets/images/faqDecor2.png'
+import faqDecor2Mobile from '../../assets/images/faqDecor2Mobile.png'
+import aboutUsDecor from '../../assets/images/aboutUsDecor.png'
+import aboutUsDecoMobile from '../../assets/images/aboutUsDecoMobile.png'
+import feedbackMedia from '../../assets/images/feedbackMedia.png'
+import required from '../../assets/images/required.svg'
 
 
 import {Link} from "react-router-dom";
+import Cookie from "../../components/cookie/cookie.jsx";
 
 
 const Home = () => {
@@ -197,7 +205,7 @@ const Home = () => {
                             <input className='subscribe-input' type="email" name='email'
                                    placeholder='mail@youcompany.com'/>
                         </label>
-                        <div className={`agree-box G-align-center ${checked ? "checked" : ""}`}
+                        <div className={`subscribe-agree  agree-box G-align-center ${checked ? "checked" : ""}`}
                              onClick={() => setChecked(!checked)}>
                             <div className='agree-icon'></div>
                             <div className='agree-text'>
@@ -447,7 +455,7 @@ const Home = () => {
         </section>
 
 
-        <section className='about-us-section section'>
+        <section className='about-us-section '>
             <div className='container'>
                 <div className='about-us-body G-flex-column'>
                     <div className='about-us-steps G-align-center'>
@@ -458,7 +466,8 @@ const Home = () => {
                         <h2 className='about-title'>НПЗ</h2>
                         <p className='about-us-clue'>Более 2000 сотрудников</p>
                         <p className='about-us-text'>
-                            — Внедрили систему и упростили обслуживание оборудования <span className='text-wrap'>благодаря умному поиску по
+                            — Внедрили систему и упростили обслуживание оборудования <span
+                            className='desktop-text-wrap'>благодаря умному поиску по
                             содержанию</span>
                         </p>
                         <p className='about-us-clue'>Какой эффект дало</p>
@@ -477,8 +486,162 @@ const Home = () => {
 
                 </div>
             </div>
+
+
+            <div className='about-us-decor G-flex'>
+                <img className='img-desktop' src={aboutUsDecor} alt=""/>
+                <img className='img-mobile' src={aboutUsDecoMobile} alt=""/>
+
+
+            </div>
         </section>
 
+
+        <section className='faq-section '>
+            <div className='container'>
+                <div className='faq-body'>
+                    <h2 className='faq-title '>Часто задаваемые вопросы</h2>
+
+                    <div className='faq-items G-flex-column'>
+                        <div className='faq-item G-flex-column'>
+                            <h2 className='faq-item-title'>Возможно ли использование системы несколькими сотрудниками с
+                                разными ролями?</h2>
+                            <p className='faq-sub-title'>Да, вы можете разграничить права доступа к отдельным файлам как
+                                для групп пользователей,
+                                так и для отдельных сотрудников</p>
+                        </div>
+                        <div className='faq-item G-flex-column'>
+                            <h2 className='faq-item-title'>
+                                Какие встроенные шаблоны есть в системе?
+
+                            </h2>
+                            <p className='faq-sub-title'>
+                                Вы можете создавать шаблоны самостоятельно, которые будут подходить под ваши конкретные
+                                нужды или же привлекать помощь наших партнеров или нас для этого.
+                            </p>
+                        </div>
+
+                        <div className='faq-item G-flex-column'>
+                            <h2 className='faq-item-title'>
+                                Есть ли ограничения по количеству хранимой информации?
+
+                            </h2>
+                            <p className='faq-sub-title'>
+                                Да, они зависят от изначально подключенного плана. Но Вы можете включить авторасширение
+                                пространства для хранения информации, когда места не хватать.
+                            </p>
+                        </div>
+
+
+                        <div className='faq-item G-flex-column'>
+                            <h2 className='faq-item-title'>
+                                Могу ли получить доступ к файлам в пространстве с мобильного устройства?
+
+                            </h2>
+                            <p className='faq-sub-title'>
+                                Да, у нас доступно мобильное приложение, поддерживающее все необходимые функции
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div className='faq-decor faq-decor--one'>
+                <img src={faqDecor1} alt=""/>
+            </div>
+            <div className='faq-decor faq-decor--two'>
+                <img className='img-desktop' src={faqDecor2} alt=""/>
+                <img className='img-mobile' src={faqDecor2Mobile} alt=""/>
+
+            </div>
+        </section>
+
+
+        <section className='feedback-section '>
+            <div className='container'>
+                <div className='feedback-body G-align-center'>
+                    <div className='feedback-media'>
+                        <img src={feedbackMedia} alt=""/>
+                    </div>
+
+                    <form className='feedback-form  form' action="">
+                        <h2 className='feedback-title form-title'>У вас еще есть вопросы? Мы готовы ответить!</h2>
+                        <div className='feedback-sub-title form-sub-title G-align-center'>
+                            <p>Или напиши нам на почту:</p>
+                            <a href="mailto:sales@dioc.tech">sales@dioc.tech</a>
+                        </div>
+
+                        <div className='feedback-inputs G-flex-column form-inputs'>
+                            <div className='form-input G-flex-column'>
+                                <div className='form-input-title G-align-start'>
+                                    <span>Имя Фамилия</span>
+                                    <div className='form-required G-flex'>
+                                        <img src={required} alt="required"/>
+                                    </div>
+                                </div>
+                                <label className='form-label'>
+                                    <input name='name' type="text" placeholder='Иван Иванов'/>
+                                </label>
+                            </div>
+
+                            <div className='form-input G-flex-column'>
+                                <div className='form-input-title G-align-start'>
+                                    <span>Номер телефона</span>
+                                    <div className='form-required G-flex'>
+                                        <img src={required} alt="required"/>
+                                    </div>
+                                </div>
+                                <label className='form-label'>
+                                    <input name='number' type="number" placeholder='+7 988 000 00-00'/>
+                                </label>
+                            </div>
+
+                            <div className='form-input G-flex-column'>
+                                <div className='form-input-title G-align-start'>
+                                    <span>Электронная почта</span>
+                                    <div className='form-required G-flex'>
+                                        <img src={required} alt="required"/>
+                                    </div>
+                                </div>
+                                <label className='form-label'>
+                                    <input name='email' type="email" placeholder='you@company.com'/>
+                                </label>
+                            </div>
+
+                            <div className='form-textarea G-flex-column'>
+                                <div className='form-input-title G-align-start'>
+                                    <span>Как мы можем помочь?</span>
+                                </div>
+                                <label className='textarea-label'>
+                                    <textarea placeholder='Расскажите коротко о вашем проекте'></textarea>
+                                </label>
+
+                            </div>
+
+                            <div className={`form-agree agree-box G-align-center ${checked ? "checked" : ""}`}
+                                 onClick={() => setChecked(!checked)}>
+                                <div className='agree-icon'></div>
+                                <div className='agree-text'>
+                                    Вы согласны с <Link to='/'>политикой конфиденциальности</Link>
+                                </div>
+
+                            </div>
+                            <div className='form-btn-cnt G-align-start'>
+                                <button className='btn-black'>Написать нам</button>
+
+                            </div>
+
+
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </section>
+
+        <Cookie/>
     </>
 };
 

@@ -1,28 +1,6 @@
 @use "../../assets/scss/variables";
 @use "../../assets/scss/mixin";
 
-.section {
-  padding: 48px 0;
-
-  @include mixin.screen-max-width-576 {
-    padding: 28px 0;
-
-  }
-}
-
-.section-title {
-  color: variables.$white;
-  text-align: center;
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 52px;
-  letter-spacing: -0.8px;
-}
-
-.block-cnt {
-  margin-top: 48px;
-}
 
 .hero-section {
   padding-top: 281px;
@@ -407,70 +385,11 @@
     }
   }
 }
-
-.agree-box {
+.subscribe-agree{
   margin-top: 20px;
-  gap: 8px;
-  cursor: pointer;
-}
-
-.agree-icon {
-  border-radius: 4px;
-  border: 1px solid variables.$dark-gray;
-  width: 16px;
-  height: 16px;
-  position: relative;
-
 
 }
 
-.agree-icon::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 10px;
-  height: 6px;
-  border-left: 2px solid white;
-  border-bottom: 2px solid white;
-  transform: translate(-50%, -50%) rotate(-45deg);
-  opacity: 0;
-  transition: opacity 0.2s ease-in-out;
-}
-
-.agree-box.checked .agree-icon {
-  background-color: #444CE7;
-  border-color: #444CE7;
-}
-
-.agree-box.checked .agree-icon::after {
-  opacity: 1;
-}
-
-.agree-text {
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  color: variables.$dark-white3;
-
-  a {
-    color: variables.$dark-white4;
-    text-decoration-line: underline;
-    text-decoration-style: solid;
-    text-decoration-skip-ink: none;
-    text-decoration-thickness: auto;
-    text-underline-offset: auto;
-    text-underline-position: from-font;
-    transition: .3s;
-    display: inline;
-
-    &:hover {
-      color: variables.$primary;
-    }
-
-  }
-}
 
 .convenient-average-item {
   max-width: 486px;
@@ -810,8 +729,26 @@
   border-radius: 12px;
   border: 1px solid variables.$light-black;
   background: variables.$black;
+  position: relative;
+  z-index: 2;
 
 
+}
+
+.about-us-section {
+  position: relative;
+  border: 2px solid #22272B;
+  border-right: none;
+  border-left: none;
+  padding: 48px 0;
+
+}
+
+.about-us-decor {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .about-us-texts {
@@ -854,10 +791,17 @@
   font-style: normal;
   font-weight: 400;
   line-height: 38.4px;
+
+  @include mixin.screen-max-width-576 {
+    font-size: 16px;
+    line-height: 22.4px;
+
+  }
 }
 
 .about-us-assessment {
   gap: 12px;
+  flex-wrap: wrap;
 
   h3 {
     color: variables.$primary;
@@ -874,12 +818,13 @@
     font-size: 22px;
     font-style: normal;
     font-weight: 400;
-    line-height:  28px;
+    line-height: 28px;
 
   }
 }
-.about-us-comments{
-  p{
+
+.about-us-comments {
+  p {
     color: variables.$white;
     font-size: 16px;
     font-style: normal;
@@ -887,3 +832,346 @@
     line-height: 22.4px
   }
 }
+
+.faq-section {
+  padding: 68px 0;
+  position: relative;
+
+  @include mixin.screen-max-width-576{
+    padding: 68px 0 24px 0 ;
+
+  }
+}
+
+.faq-decor {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.faq-body {
+  position: relative;
+  z-index: 2;
+}
+
+.faq-decor--one {
+  right: 0;
+  top: 0;
+
+  @include mixin.screen-max-width-576 {
+    display: none;
+  }
+}
+
+.faq-decor--two {
+  top: 99px;
+  right: 92px;
+
+  @include mixin.screen-max-width-576 {
+    top: 0;
+    right: 20px;
+  }
+}
+
+.faq-title {
+  color: variables.$white;
+  font-family: 'Roboto', sans-serif;
+  font-size: 57px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 64px;
+  letter-spacing: -0.25px;
+}
+
+.faq-items {
+  margin-top: 40px;
+  gap: 16px;
+  max-width: 842px;
+  width: 100%;
+}
+
+.faq-item {
+  gap: 12px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid variables.$dark-gray;
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom:0;
+  }
+}
+
+.faq-item-title {
+  color: variables.$white;
+  font-family: "Roboto", sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 32px;
+}
+
+.faq-sub-title {
+  color: variables.$light-gray;
+  font-family: "Roboto", sans-serif;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 28px;
+}
+
+.feedback-body {
+  gap: 64px;
+}
+
+.feedback-form {
+  max-width: 708px;
+  width: 100%;
+  padding: 64px 84px;
+
+  @include mixin.screen-max-width-991{
+    max-width: 100%;
+    padding: 48px 0 ;
+  }
+}
+
+
+.feedback-sub-title {
+  margin-top: 24px;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.feedback-inputs {
+  margin-top: 48px;
+  gap: 24px;
+}
+.feedback-media{
+  @include mixin.screen-max-width-991{
+    display: none;
+  }
+}
+
+
+//General style  start
+.section {
+  padding: 48px 0;
+
+  @include mixin.screen-max-width-576 {
+    padding: 28px 0;
+
+  }
+}
+
+.section-title {
+  color: variables.$white;
+  text-align: center;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 52px;
+  letter-spacing: -0.8px;
+}
+
+.block-cnt {
+  margin-top: 48px;
+}
+
+.form-title {
+  color: variables.$white;
+  font-family: 'Roboto', sans-serif;
+  font-size: 45px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 52px;
+}
+
+.form-sub-title {
+
+
+  p {
+    color: variables.$white;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px;
+  }
+
+  a {
+    color: variables.$primary;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 30px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.form-input {
+  gap: 8px;
+}
+
+.form-textarea{
+  gap: 8px;
+
+}
+
+.form-input-title {
+  gap: 4px;
+
+  span {
+    color: variables.$light-gray;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px
+  }
+
+}
+
+.form-required {
+  max-width: 9px;
+  height: 20px;
+  width: 100%;
+}
+
+.textarea-label{
+  width: 100%;
+  height: 128px;
+
+  textarea{
+    height: 100%;
+    width: 100%;
+    background: variables.$light-black2;
+    border: 1px solid variables.$dark-gray;
+    font-size: 16px;
+    color: variables.$white;
+    transition: .3s;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    padding: 8px 10px;
+    resize: none;
+    &::placeholder{
+      color: variables.$dark-gray2;
+
+    }
+    &:focus{
+      border: 1px solid variables.$primary;
+
+    }
+
+  }
+
+}
+.form-label{
+  width: 100%;
+  height: 40px;
+
+
+  input{
+    width: 100%;
+    background: variables.$light-black2;
+    height: 100%;
+    border: 1px solid variables.$dark-gray;
+    font-size: 16px;
+    color: variables.$white;
+    transition: .3s;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    padding: 0 10px;
+    &::placeholder{
+      color: variables.$dark-gray2;
+
+    }
+    &:focus{
+      border: 1px solid variables.$primary;
+
+    }
+
+  }
+
+}
+
+.agree-box {
+  gap: 8px;
+  cursor: pointer;
+}
+.form-agree{
+  margin-top: 8px;
+}
+
+
+.agree-icon {
+  border-radius: 4px;
+  border: 1px solid variables.$dark-gray;
+  width: 16px;
+  height: 16px;
+  position: relative;
+
+
+}
+
+.agree-icon::after {
+  content: "";
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  width: 8px;
+  height: 6px;
+  border-left: 2px solid white;
+  border-bottom: 2px solid white;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.agree-box.checked .agree-icon {
+  background-color: #444CE7;
+  border-color: #444CE7;
+}
+
+.agree-box.checked .agree-icon::after {
+  opacity: 1;
+}
+
+.agree-text {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  color: variables.$dark-white3;
+
+  a {
+    color: variables.$dark-white4;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-skip-ink: none;
+    text-decoration-thickness: auto;
+    text-underline-offset: auto;
+    text-underline-position: from-font;
+    transition: .3s;
+    display: inline;
+
+    &:hover {
+      color: variables.$primary;
+    }
+
+  }
+}
+.btn-black{
+  padding: 10px 20px;
+  border-radius: 99px;
+  background: variables.$dark-gray3;
+  color: variables.$dark-gray4;
+  text-align: center;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 27px;
+}
+
+//General style  end

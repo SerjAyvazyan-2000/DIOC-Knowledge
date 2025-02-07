@@ -1,0 +1,97 @@
+@use "../../assets/scss/variables";
+@use "../../assets/scss/mixin";
+
+
+footer {
+  padding: 40px 0 56px 0;
+
+  @include mixin.screen-max-width-576{
+    padding: 24px 0 56px 0;
+
+  }
+}
+
+.footer-container {
+  max-width: 1352px;
+  width: 100%;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+.footer-body {
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+.footer-clues {
+  max-width: 537px;
+  gap: 24px;
+
+  h3 {
+    color: variables.$dark-gray2;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+  }
+
+  p {
+    color: variables.$dark-gray2;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 27px;
+  }
+}
+
+.footer-menu-list {
+  gap: 12px;
+}
+
+.footer-menu {
+  max-width: 237px;
+  width: 100%;
+}
+
+.footer-menu-item {
+  a {
+    color: variables.$dark-gray2;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21px;
+    text-decoration-line: underline;
+    text-decoration-skip-ink: none;
+    text-decoration-thickness: auto;
+    text-underline-position: from-font;
+  }
+
+}
+
+.footer-column {
+  max-width: 304px;
+  width: 100%;
+  align-items: flex-end;
+  gap: 6px;
+
+  a{
+    color: variables.$dark-gray2;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21px;
+    text-decoration-line: underline;
+    text-decoration-skip-ink: none;
+    text-decoration-thickness: auto;
+    text-underline-position: from-font;
+  }
+
+  @include mixin.screen-max-width-576{
+    align-items: stretch;
+  }
+}
+
+.footer-logo {
+  max-width: 171px;
+}
