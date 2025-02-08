@@ -74,7 +74,7 @@ const CallBack = ({close,active}) => {
                             }
 
 
-                            <label className={` form-label${phoneClass}`}>
+                            <label className={`form-label ${phoneClass}`}>
                                 <input
                                     name='number'
                                     type="number"
