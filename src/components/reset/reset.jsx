@@ -85,11 +85,11 @@ const Reset = ({close}) => {
         };
 
         setErrors(newErrors);
-        setTouched({email: true, password: true, confirmPassword: true});
+        setTouched({email: true, password: true, confirmPassword: false});
 
         if (Object.values(newErrors).some((error) => error)) return;
 
-        console.log("Пароль успешно сброшен!", formData);
+        alert("Пароль успешно сброшен!");
     };
 
 

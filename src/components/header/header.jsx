@@ -55,6 +55,14 @@ const Header = () => {
             setRegister(!register);
 
         }
+        useEffect(() => {
+            if (callBack || login || register) {
+                document.body.style.overflow = "hidden";
+            } else {
+                document.body.style.overflow = "";
+            }
+        }, [callBack, login, register]);
+
         const toggleBurger = () => {
             setIsActive((prev) => !prev);
         };
@@ -179,7 +187,7 @@ const Header = () => {
 
                                         </div>
 
-                                        <form  className='auth-form'>
+                                        <form className='auth-form'>
                                             <div className='auth-inputs G-flex-column '>
 
                                                 <div className={`form-input G-flex-column ${
@@ -204,7 +212,7 @@ const Header = () => {
                                                             type={isVisible ? 'text' : 'password'}
                                                             value={formData.password}
                                                             placeholder='Пароль'/>
-                                                            onChange={handleChange}
+                                                        onChange={handleChange}
 
                                                         <div onClick={toggleVisibility} className='eye'>
                                                             <img src={eye} alt=""/>
@@ -245,7 +253,7 @@ const Header = () => {
                                 {register &&
                                     <div className='register-mobile'>
                                         <div className='auth-header'>
-                                        <div className='auth-logo'>
+                                            <div className='auth-logo'>
                                                 <img src={logo} alt=""/>
                                             </div>
                                             <h2 className='aut-title form-title'>Создать аккаунт</h2>

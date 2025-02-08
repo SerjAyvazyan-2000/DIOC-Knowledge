@@ -74,12 +74,6 @@ const Login = ({close, active}) => {
 
         if (newErrors.email || newErrors.password) return;
 
-        if (!checked) {
-            alert("Нужно согласиться с политикой!");
-            return;
-        }
-
-
 
 
         alert("Форма отправлена:");
