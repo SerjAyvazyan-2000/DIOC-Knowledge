@@ -12,52 +12,79 @@
   position: relative;
   z-index: 2;
 
+  @include mixin.screen-max-width-991 {
+    display: none;
+  }
+
 }
-.auth-header{
+
+.auth-header {
   position: relative;
 }
-.auth-close{
+
+.auth-close {
   position: absolute;
   right: 0;
   top: 0;
   cursor: pointer;
   transition: .3s;
 
-  &:hover{
+  &:hover {
     transform: scale(1.1);
   }
+
+  @include mixin.screen-max-width-991 {
+    display: none;
+  }
 }
-.auth-box{
+
+.auth-box {
   gap: 34px;
 }
-.auth-logo{
+
+.auth-logo {
   max-width: 171px;
   width: 100%;
+  @include mixin.screen-max-width-991 {
+    display: none;
+  }
 }
-.aut-title{
+
+.aut-title {
   margin-top: 20px;
+
+  @include mixin.screen-max-width-991 {
+    margin-top: 0;
+
+  }
 }
-.aut-sub-title{
+
+.aut-sub-title {
   margin-top: 12px;
 }
-.auth-inputs{
+
+.auth-inputs {
   gap: 20px;
 }
-.remember-block{
+
+.remember-block {
   margin-top: 32px;
   gap: 8px;
 }
-.form-btn-cnt{
+
+.form-btn-cnt {
   margin-top: 20px;
 }
-.remember-text{
+
+.remember-text {
   color: variables.$light-gray3;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 19px;
 }
-.forgot-password{
+
+.forgot-password {
 
 }
 
@@ -71,29 +98,9 @@
 
 }
 
-.remember-icon::after {
-  content: "";
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  width: 8px;
-  height: 8px;
-  border-left: 2px solid white;
-  border-bottom: 2px solid white;
-  transform: translate(-50%, -50%) rotate(-45deg);
-  opacity: 0;
-  transition: opacity 0.2s ease-in-out;
+.remember-icon img {
+  display: none;
 }
-
-.remember-icon.checked .agree-icon {
-  background-color: #444CE7;
-  border-color: #444CE7;
-}
-
-.remember-icon.checked .agree-icon::after {
-  opacity: 1;
-}
-
 .callBack-title {
   color: variables.$light-gray;
   font-size: 16px;
@@ -102,11 +109,13 @@
   line-height: 24px;
   margin-bottom: 8px;
 }
-.remember-check{
+
+.remember-check {
   gap: 8px;
   cursor: pointer;
 }
-.forgot-password{
+
+.forgot-password {
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -119,21 +128,67 @@
   color: variables.$primary;
   background: transparent;
 }
-.remember-check.checked .remember-icon {
-  background-color: #444CE7;
-  border-color: #444CE7;
+
+.remember-check.checked .remember-icon img {
+  display: flex;
 }
 
 .remember-check.checked .remember-icon::after {
   opacity: 1;
 }
 
-.password-label{
+.password-label {
   position: relative;
 }
-.eye{
+
+.eye {
   position: absolute;
   right: 12px;
   top: 7px;
   cursor: pointer;
+}
+
+.reset-box {
+  gap: 32px;
+
+  @include mixin.screen-max-width-991 {
+    gap: 64px;
+  }
+}
+
+
+.reset-btn-cnt {
+  margin-top: 32px;
+
+}
+
+.reset-btn {
+  background: variables.$dark-gray4;
+  text-align: center;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 27px;
+  padding: 10px 20px;
+  border-radius: 99px;
+  color: variables.$dark-gray4;
+  transition: .3s;
+
+  &:hover {
+    background: variables.$light-primary;
+    color: variables.$white;
+
+  }
+}
+
+
+.login-mobile {
+  display: none;
+
+  @include mixin.screen-max-width-991 {
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+    margin: 0 20px 10px 20px;
+  }
 }

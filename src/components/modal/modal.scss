@@ -13,7 +13,9 @@
   opacity: 0;
   visibility: hidden;
   transition: .3s;
-
+  @include mixin.screen-max-width-991{
+    display: none;
+  }
 
 
   &.active{

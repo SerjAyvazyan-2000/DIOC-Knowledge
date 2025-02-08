@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './home.scss'
 import lock from '../../assets/images/IconLock.svg'
 import IconTree from '../../assets/images/IconTree.svg'
@@ -37,6 +37,8 @@ import aboutUsDecor from '../../assets/images/aboutUsDecor.png'
 import aboutUsDecoMobile from '../../assets/images/aboutUsDecoMobile.png'
 import feedbackMedia from '../../assets/images/feedbackMedia.png'
 import required from '../../assets/images/required.svg'
+import box from '../../assets/images/box.svg'
+import iconMail from '../../assets/images/IconMail.svg'
 
 
 import {Link} from "react-router-dom";
@@ -45,6 +47,82 @@ import Cookie from "../../components/cookie/cookie.jsx";
 
 const Home = () => {
     const [checked, setChecked] = useState(false);
+
+    const [email, setEmail] = useState("");
+    const [message, setMessage] = useState("Электронная почта");
+    const [labelClass, setLabelClass] = useState("");
+    const [activeStep, setActiveStep] = useState(1);
+    const [placeholder, setPlaceholder] = useState("mail@youcompany.com");
+
+
+    const validateEmail = (email) => {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    };
+
+    const handleSubmit = () => {
+        if (!checked && email) {
+            setMessage("Вы должны согласиться с политикой конфиденциальности");
+            setLabelClass("error");
+            return;
+        }
+
+        const savedEmail = localStorage.getItem("subscribedEmail");
+
+
+        if (savedEmail === email) {
+            setMessage("Вы уже подписаны");
+            setLabelClass("active");
+            setEmail('')
+        } else if (!validateEmail(email) ) {
+            setMessage("Неверный формат почты");
+            setLabelClass("error");
+        } else {
+            localStorage.setItem("subscribedEmail", email);
+            setMessage("Вы подписаны");
+            setLabelClass("active");
+            setEmail('')
+
+        }
+    };
+
+    const steps = [
+        {
+            id: 1,
+            title: "Сфера обслуживания",
+            clue: "Более 500 сотрудников",
+            text: "— Внедрили решение и снизили стоимость обучения бариста",
+            effects: [
+                { value: "+120%", label: "Скорость обучения" },
+                { value: "+50%", label: "Эффективность обслуживания" }
+            ]
+        },
+        {
+            id: 2,
+            title: "НПЗ",
+            clue: "Более 2000 сотрудников",
+            text: "— Внедрили систему и упростили обслуживание оборудования благодаря умному поиску по содержанию",
+            effects: [
+                { value: "+50%", label: "Эффективность обслуживания" },
+                { value: "+10%", label: "Эффективность производства" }
+            ]
+        }
+    ];
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth <= 567) {
+                setPlaceholder("you@company.com");
+            } else {
+                setPlaceholder("mail@youcompany.com");
+            }
+        };
+
+        handleResize();
+
+        window.addEventListener("resize", handleResize);
+
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
     return <>
         <section className='hero-section'>
@@ -192,29 +270,42 @@ const Home = () => {
                 <div className='subscribe-body G-align-start'>
                     <div className='subscribe-text-cnt'>
                         <h2 className='subscribe-text'>
-                            Не пропустите наши лучшие <span
-                            className='desktop-text-wrap'>материалы! Подпишитесь на нашу</span> почтовую рассылку о
+                            Не пропустите наши лучшие материалы!
+                            <span className='desktop-bold-text'><span className='mobile-bold-text'>Подпишитесь на нашу почтовую рассылку</span> о
                             бизнесе
-                            <span className='desktop-text-wrap'>и организации процессов</span>
+                            и организации процессов</span>
                         </h2>
                     </div>
 
                     <div className='subscribe-tools'>
-                        <h3 className='subscribe-tools-title'>Электронная почта</h3>
-                        <label className='subscribe-label'>
-                            <input className='subscribe-input' type="email" name='email'
-                                   placeholder='mail@youcompany.com'/>
+                        <h3 className="subscribe-tools-title">{message}</h3>
+                        <label className={`subscribe-label ${labelClass}`}>
+                            <input
+                                className='subscribe-input'
+                                type="email"
+                                name="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                placeholder={placeholder}/>
+
+                            <div className='mobile-icon-email'>
+                                <img src={iconMail} alt=""/>
+                            </div>
                         </label>
                         <div className={`subscribe-agree  agree-box G-align-center ${checked ? "checked" : ""}`}
                              onClick={() => setChecked(!checked)}>
-                            <div className='agree-icon'></div>
+                            <div className='agree-icon'>
+                                <img src={box} alt=""/>
+                            </div>
                             <div className='agree-text'>
                                 Вы согласны с <Link to='/'>политикой конфиденциальности</Link>
                             </div>
 
                         </div>
+
+
                         <div className='agree-btn G-justify-end'>
-                            <button className='btn-primary'>Подписаться</button>
+                            <button onClick={handleSubmit} className='btn-primary'>Подписаться</button>
                         </div>
                     </div>
                     <div className='subscribe-decor'>
@@ -278,12 +369,14 @@ const Home = () => {
                         <div className='why-choose-cnt convenient-column G-align-center '>
                             <div className='convenient-average-item block-item'>
                                 <div className='choose-item-texts block-texts'>
-                                    <h3 className='block-title'>Гибкая настройка прав</h3>
+                                    <h3 className='block-title choose-desktop-title'>Гибкая настройка прав</h3>
+                                    <h3 className='block-title choose-mobile-title'>Разрешения</h3>
+
                                     <p className='block-text'>Контролируйте, кто может просматривать и редактировать
                                         ваши страницы.</p>
                                 </div>
                                 <div className='choose-item-img block-img'>
-                                    <img className='img-desktop' src={convenientImg3} alt=""/>
+                                <img className='img-desktop' src={convenientImg3} alt=""/>
                                     <img className='img-mobile' src={convenientImg3Mobile} alt=""/>
 
                                 </div>
@@ -458,30 +551,40 @@ const Home = () => {
         <section className='about-us-section '>
             <div className='container'>
                 <div className='about-us-body G-flex-column'>
-                    <div className='about-us-steps G-align-center'>
-                        <div className='about-us-step'></div>
-                        <div className='about-us-step active'></div>
-                    </div>
-                    <div className='about-us-texts G-flex-column'>
-                        <h2 className='about-title'>НПЗ</h2>
-                        <p className='about-us-clue'>Более 2000 сотрудников</p>
-                        <p className='about-us-text'>
-                            — Внедрили систему и упростили обслуживание оборудования <span
-                            className='desktop-text-wrap'>благодаря умному поиску по
-                            содержанию</span>
-                        </p>
-                        <p className='about-us-clue'>Какой эффект дало</p>
-                        <div className='about-us-assessment G-align-center'>
-                            <h3 className=''>+50%</h3>
-                            <p>Эффективность <span className='text-wrap'>обслуживания</span></p>
-                            <h3 className=''>+10%</h3>
-                            <p>Эффективность <span className='text-wrap'>производства</span></p>
-                        </div>
-                    </div>
 
-                    <div className='about-us-comments'>
-                        <p>Комментарий</p>
+                    <div className="about-us-steps G-align-center">
+                        {steps.map((step) => (
+                            <div
+                                key={step.id}
+                                className={`about-us-step ${activeStep === step.id ? "active" : ""}`}
+                                onClick={() => setActiveStep(step.id)}
+                            ></div>
+                        ))}
                     </div>
+                    {steps.map((step) => (
+                        activeStep === step.id && (
+                            <div key={step.id} className={`about-us-step${step.id}`}>
+                                <div className="about-us-texts G-flex-column">
+                                    <h2 className="about-title">{step.title}</h2>
+                                    <p className="about-us-clue">{step.clue}</p>
+                                    <p className="about-us-text">{step.text}</p>
+                                    <p className="about-us-clue">Какой эффект дало</p>
+                                    <div className="about-us-assessment G-align-center">
+                                        {step.effects.map((effect, index) => (
+                                            <>
+                                                <h3>{effect.value}</h3>
+                                                <p>{effect.label}</p>
+                                            </>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div className="about-us-comments">
+                                    <p>Комментарий</p>
+                                </div>
+                            </div>
+                        )
+                    ))}
+
 
 
                 </div>
@@ -622,12 +725,16 @@ const Home = () => {
 
                             <div className={`form-agree agree-box G-align-center ${checked ? "checked" : ""}`}
                                  onClick={() => setChecked(!checked)}>
-                                <div className='agree-icon'></div>
+                                <div className='agree-icon'>
+                                    <img src={box} alt=""/>
+                                </div>
                                 <div className='agree-text'>
                                     Вы согласны с <Link to='/'>политикой конфиденциальности</Link>
                                 </div>
 
                             </div>
+
+
                             <div className='form-btn-cnt G-align-start'>
                                 <button className='btn-black'>Написать нам</button>
 

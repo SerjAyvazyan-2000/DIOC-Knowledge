@@ -1,6 +1,25 @@
 @use "../../assets/scss/variables";
 @use "../../assets/scss/mixin";
+.callBack-block{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: auto;
+  background: variables.$light-black;
+  z-index: 11;
+  opacity: 0;
+  visibility: hidden;
+  transition: .3s;
 
+
+
+  &.active{
+    opacity: 1;
+    visibility: visible;
+  }
+}
 .callBack-cnt {
   max-width: 876px;
   width: 100%;
@@ -159,6 +178,12 @@
   border-radius: 99px;
   background: variables.$primary;
   padding: 6.5px 21px;
+  transition:.3s;
+
+  &:hover{
+    background: variables.$dark-gray3;
+
+  }
 }
 
 .callBack-btn-cnt {

@@ -34,7 +34,7 @@ header.moved {
   z-index: 3;
 
   @include mixin.screen-max-width-576 {
-    padding: 12px;
+    padding: 11px 12px;
   }
 }
 
@@ -99,6 +99,8 @@ header.moved {
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: auto;
+    z-index: -1;
 
     &.active {
       right: 0;
@@ -110,6 +112,7 @@ header.moved {
   @include mixin.screen-max-width-991 {
     width: 100%;
   }
+
 }
 
 .menu-link {
@@ -119,18 +122,22 @@ header.moved {
   text-align: center;
   color: variables.$dark-white;
   font-family: 'Inter', sans-serif;
+  transition: .3s;
+
   @include mixin.screen-max-width-991 {
     text-decoration-line: underline;
     text-decoration-skip-ink: none;
     text-underline-position: from-font;
     font-size: 18px;
-
+  }
+  &:hover {
+    color: variables.$primary;
   }
 
 }
 
 .header-bnt-black {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter';
   font-size: 14px;
   padding: 6px 16px;
   font-weight: 400;
@@ -139,6 +146,12 @@ header.moved {
   background: variables.$light-black;
   color: variables.$dark-white;
   border-radius: 99px;
+  transition: .3s;
+
+  &:hover{
+    background: variables.$light-primary;
+    color: variables.$white;
+  }
 
 }
 
@@ -171,7 +184,7 @@ header.moved {
 }
 
 .bnt-login {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter';
   font-size: 14px;
   padding: 6px 16px;
   font-weight: 400;
@@ -180,12 +193,17 @@ header.moved {
   background: transparent;
   color: variables.$dark-white;
   border-radius: 99px;
+  transition: .3s;
 
   @include mixin.screen-max-width-991 {
     width: 100%;
     background: variables.$light-black;
     padding: 13px 16px;
 
+  }
+  &:hover{
+    background: variables.$white;
+    color: variables.$black;
   }
 }
 
@@ -282,3 +300,4 @@ header.moved {
 
 
 }
+
