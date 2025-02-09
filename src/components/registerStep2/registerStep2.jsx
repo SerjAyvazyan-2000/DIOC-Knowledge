@@ -5,13 +5,8 @@ import {Slider} from 'primereact/slider';
 import "primereact/resources/themes/lara-light-cyan/theme.css";
 
 const RegisterStep2 = ({close}) => {
-    const [checked, setChecked] = useState(false);
-    const [isVisible, setIsVisible] = useState(false);
     const [value, setValue] = useState(50);
 
-    const toggleVisibility = () => {
-        setIsVisible((prev) => !prev);
-    };
 
     return <form className='auth-form' action="">
         <div className='auth-inputs G-flex-column '>

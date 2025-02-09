@@ -47,7 +47,6 @@ import Cookie from "../../components/cookie/cookie.jsx";
 
 const Home = () => {
     const [checked, setChecked] = useState(false);
-
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("Электронная почта");
     const [labelClass, setLabelClass] = useState("");

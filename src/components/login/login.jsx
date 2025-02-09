@@ -5,8 +5,9 @@ import eye from "../../assets/images/Eye.svg";
 import './login.scss'
 import Reset from "../reset/reset.jsx";
 import box from '../../assets/images/box.svg'
+import arrow from '../../assets/images/arrowUp.svg'
 
-const Login = ({close, active}) => {
+const Login = ({close}) => {
     const [checked, setChecked] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const [reset, setReset] = useState(false);
@@ -39,26 +40,25 @@ const Login = ({close, active}) => {
     };
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+        const {name, value} = e.target;
+        setFormData({...formData, [name]: value});
 
         if (name === "email") {
             if (!validateEmail(value)) {
-                setErrors((prev) => ({ ...prev, email: "Неверный формат почты" }));
+                setErrors((prev) => ({...prev, email: "Неверный формат почты"}));
             } else {
-                setErrors((prev) => ({ ...prev, email: "" }));
+                setErrors((prev) => ({...prev, email: ""}));
             }
         }
 
         if (name === "password") {
             if (!validatePassword(value)) {
-                setErrors((prev) => ({ ...prev, password: "Пароль должен быть от 6 символов" }));
+                setErrors((prev) => ({...prev, password: "Пароль должен быть от 6 символов"}));
             } else {
-                setErrors((prev) => ({ ...prev, password: "" }));
+                setErrors((prev) => ({...prev, password: ""}));
             }
         }
     };
-
 
 
     const handleSubmit = (e) => {
@@ -70,10 +70,9 @@ const Login = ({close, active}) => {
         };
 
         setErrors(newErrors);
-        setTouched({ email: true, password: true });
+        setTouched({email: true, password: true});
 
         if (newErrors.email || newErrors.password) return;
-
 
 
         alert("Форма отправлена:");
@@ -81,11 +80,15 @@ const Login = ({close, active}) => {
 
     return <div className='auth-cnt'>
         <div className='auth-box login-box G-flex-column'>
-
-
             {!reset ? <>
 
                 <div className='auth-header'>
+                    <div onClick={close} className='mobile-back-btn G-align-center'>
+                        <div className='back-icon'>
+                            <img src={arrow} alt=""/>
+                        </div>
+                        <span>Назад</span>
+                    </div>
                     <div className='auth-logo'>
                         <img src={logo} alt=""/>
                     </div>
@@ -120,7 +123,8 @@ const Login = ({close, active}) => {
                             <div className='form-input-title G-align-start'>
                                 <span>{errors.password || "Пароль"}</span>
                             </div>
-                            <label className={`form-label password-label ${errors.password ? "error" : touched.password ? "active" : ""}`}>
+                            <label
+                                className={`form-label password-label ${errors.password ? "error" : touched.password ? "active" : ""}`}>
                                 <input
                                     name='password'
                                     type={isVisible ? 'text' : 'password'}

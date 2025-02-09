@@ -1,14 +1,14 @@
 import React, {useState} from 'react';
 import logo from "../../assets/images/logo.png";
 import closeImg from "../../assets/images/close.svg";
-import eye from "../../assets/images/Eye.svg";
 import './register.scss'
 import {Link} from "react-router-dom";
 import RegisterStep2 from "../registerStep2/registerStep2.jsx";
 import box from "../../assets/images/box.svg";
 import PasswordField from "../passwordField/passwordField.jsx";
+import arrow from "../../assets/images/arrowUp.svg";
 
-const Register = ({close, active}) => {
+const Register = ({close}) => {
     const [checked, setChecked] = useState(false);
     const [registerStep2, setRegisterStep2] = useState(false);
     const [formData, setFormData] = useState({
@@ -101,13 +101,19 @@ const Register = ({close, active}) => {
         setTouched({name: true, phone: true, password: true, confirmPassword: false});
 
         if (Object.values(newErrors).some((error) => error)) return;
-        alert("Вы успешно прошли первый этап !");
         setRegisterStep2((prev) => !prev);
     };
 
     return <div className='auth-cnt'>
         <div className='auth-box  G-flex-column'>
             <div className='auth-header'>
+                <div onClick={close} className='mobile-back-btn G-align-center'>
+                    <div className='back-icon'>
+                        <img src={arrow} alt=""/>
+                    </div>
+                    <span>Назад</span>
+                </div>
+
                 <div className='auth-logo'>
                     <img src={logo} alt=""/>
                 </div>
@@ -161,16 +167,16 @@ const Register = ({close, active}) => {
                         <div className='form-input G-flex-column'>
                             <div className='form-input-title G-align-start'>
                                 <span>{errors?.phone || "Номер телефона"}</span>
+
                             </div>
                             <label
-                                className={`password-label form-label ${
-                                    formData.phone
+                                className={`form-label ${
+                                    formData.phone && !errors.phone
                                         ? "active"
                                         : errors.phone
                                             ? "error"
                                             : ""
                                 }`}>
-
 
                                 <input
                                     name='phone'
@@ -203,7 +209,6 @@ const Register = ({close, active}) => {
 
 
                     </div>
-
 
                     <div className={`register-agree agree-box G-align-center ${checked ? "checked" : ""}`}
                          onClick={() => setChecked(!checked)}>

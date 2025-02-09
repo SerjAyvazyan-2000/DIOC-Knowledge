@@ -13,7 +13,10 @@
   z-index: 2;
 
   @include mixin.screen-max-width-991 {
-    display: none;
+    min-height: max-content;
+    padding: 0 20px 20px 20px ;
+    border: none;
+
   }
 
 }
@@ -40,6 +43,9 @@
 
 .auth-box {
   gap: 34px;
+  @include mixin.screen-max-width-991 {
+    gap: 64px;
+  }
 }
 
 .auth-logo {
@@ -181,14 +187,16 @@
   }
 }
 
-
-.login-mobile {
+.mobile-back-btn{
+  color: variables.$white;
+  background: transparent;
+  margin-bottom:7px;
   display: none;
 
-  @include mixin.screen-max-width-991 {
+  @include mixin.screen-max-width-991{
     display: flex;
-    flex-direction: column;
-    gap: 64px;
-    margin: 0 20px 10px 20px;
   }
+}
+.back-icon{
+  transform:rotate(-90deg);
 }

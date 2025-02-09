@@ -95,7 +95,7 @@ header.moved {
     height: 100%;
     transition: .3s;
     top: 0;
-    padding-top: 124px;
+    padding-top: 100px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -296,7 +296,7 @@ header.moved {
 .burger.active::after {
   transform: rotate(45deg);
   position: relative;
-  bottom: 7px;
+  bottom: 8px;
 
 
 }

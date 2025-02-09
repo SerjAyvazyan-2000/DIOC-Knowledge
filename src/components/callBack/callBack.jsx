@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import './callBack.scss'
 import incoming from '../../assets/images/incoming.png'
 import closeImg from '../../assets/images/close.svg'
-import required from "../../assets/images/required.svg";
 import {Link} from "react-router-dom";
 import box from "../../assets/images/box.svg";
 
@@ -31,24 +30,26 @@ const CallBack = ({close, active}) => {
             setFormData({...formData, [name]: value});
             setTouched((prev) => ({...prev, [name]: true}));
 
-            if (name === "phone") {
-                if (!value) {
-                    errors.phone = "";
-                } else if (!validatePhoneNumber(value)) {
-                    errors.phone = "Неверный формат номера";
-                } else {
-                    errors.phone = "";
+            setErrors((prev) => {
+                const newErrors = {...prev};
+
+                if (name === "phone") {
+                    if (!value) {
+                        newErrors.phone = "Напишите номер";
+                    } else if (!validatePhoneNumber(value)) {
+                        newErrors.phone = "Неверный формат номера";
+                    } else {
+                        newErrors.phone = "";
+                    }
                 }
 
-            }
-            if (name === "name") {
-                if (value) {
-                    errors.name = "";
+                if (name === "name") {
+                    newErrors.name = value ? "" : "Напишите имя";
                 }
 
-            }
+                return newErrors;
+            });
 
-            setErrors((prev) => ({...prev, ...errors}));
 
         };
 
@@ -58,13 +59,15 @@ const CallBack = ({close, active}) => {
                 alert("Вы должны согласиться с политикой конфиденциальности!");
                 return;
             }
-            let newErrors = {
-                phone: formData.phone ? "" : "Напишите номер ",
-                name: formData.name ? "" : "Напишите имя  ",
 
+            const newErrors = {
+                phone: validatePhoneNumber(formData.phone) ? "" : "Неверный формат номера",
+                name: formData.name ? "" : "Напишите имя",
             };
             setErrors(newErrors);
-            setTouched({phone: true});
+
+            setTouched({phone: true, name: true});
+
             if (Object.values(newErrors).some((error) => error)) return;
             alert("Ваша заявка отправлено  !");
 
