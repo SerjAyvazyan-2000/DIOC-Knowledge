@@ -85,10 +85,11 @@ const Header = () => {
                                                 звонок</Link>
                                         </li>
                                         <li className='menu-item'>
-                                            <Link className='menu-link' to={''}>Продукт</Link>
+                                            <a className='menu-link' href="#product">Продукт</a>
+
                                         </li>
                                         <li className='menu-item'>
-                                            <Link className='menu-link' to={''}>Цены</Link>
+                                            <a className='menu-link' href="#rate">Цены</a>
                                         </li>
                                     </ul>
                                 </> : null}

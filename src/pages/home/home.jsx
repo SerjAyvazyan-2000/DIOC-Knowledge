@@ -72,7 +72,7 @@ const Home = () => {
             setMessage("Вы уже подписаны");
             setLabelClass("active");
             setEmail('')
-        } else if (!validateEmail(email) ) {
+        } else if (!validateEmail(email)) {
             setMessage("Неверный формат почты");
             setLabelClass("error");
         } else {
@@ -91,8 +91,8 @@ const Home = () => {
             clue: "Более 500 сотрудников",
             text: "— Внедрили решение и снизили стоимость обучения бариста",
             effects: [
-                { value: "+120%", label: "Скорость обучения" },
-                { value: "+50%", label: "Эффективность обслуживания" }
+                {value: "+120%", label: "Скорость обучения"},
+                {value: "+50%", label: "Эффективность обслуживания"}
             ]
         },
         {
@@ -101,8 +101,8 @@ const Home = () => {
             clue: "Более 2000 сотрудников",
             text: "— Внедрили систему и упростили обслуживание оборудования благодаря умному поиску по содержанию",
             effects: [
-                { value: "+50%", label: "Эффективность обслуживания" },
-                { value: "+10%", label: "Эффективность производства" }
+                {value: "+50%", label: "Эффективность обслуживания"},
+                {value: "+10%", label: "Эффективность производства"}
             ]
         }
     ];
@@ -375,7 +375,7 @@ const Home = () => {
                                         ваши страницы.</p>
                                 </div>
                                 <div className='choose-item-img block-img'>
-                                <img className='img-desktop' src={convenientImg3} alt=""/>
+                                    <img className='img-desktop' src={convenientImg3} alt=""/>
                                     <img className='img-mobile' src={convenientImg3Mobile} alt=""/>
 
                                 </div>
@@ -502,7 +502,7 @@ const Home = () => {
         </section>
 
 
-        <section className='rate-section'>
+        <section id='rate' className='rate-section'>
             <div className='container'>
                 <div className='rate-body G-align-center'>
                     <div className='rate-description G-flex-column'>
@@ -547,7 +547,7 @@ const Home = () => {
         </section>
 
 
-        <section className='about-us-section '>
+        <section id='product' className='about-us-section '>
             <div className='container'>
                 <div className='about-us-body G-flex-column'>
 
@@ -583,7 +583,6 @@ const Home = () => {
                             </div>
                         )
                     ))}
-
 
 
                 </div>
@@ -752,3 +751,4 @@ const Home = () => {
 };
 
 export default Home;
+
