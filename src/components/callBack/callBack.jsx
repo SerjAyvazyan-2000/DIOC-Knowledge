@@ -6,128 +6,161 @@ import required from "../../assets/images/required.svg";
 import {Link} from "react-router-dom";
 import box from "../../assets/images/box.svg";
 
-const CallBack = ({close,active}) => {
-    const [checked, setChecked] = useState(false);
-    const [phone, setPhone] = useState("");
-    const [name, setName] = useState("");
-    const [phoneMessage, setPhoneMessage] = useState("Введите ваш номер");
-    const [phoneClass, setPhoneClass] = useState("");
-    const [nameMessage, setNameMessage] = useState("Введите ваше ФИО");
-    const [nameClass, setNameClass] = useState("");
+const CallBack = ({close, active}) => {
+        const [checked, setChecked] = useState(false);
 
-    const validatePhone = (phone) => {
-        return /^\+7\s\(\d{3}\)\s\d{3}-\d{2}-\d{2}$/.test(phone);
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        if (!checked) {
-            alert("Вы должны согласиться с политикой конфиденциальности!");
-            return;
-        }
-
-        let isValid = true;
-
-        if (!phone) {
-            setPhoneMessage("Неверный формат номера");
-            setPhoneClass("error");
-            isValid = false;
-        } else {
-            setPhoneMessage("");
-            setPhoneClass("active");
-        }
-
-        if (name.trim().length < 5) {
-            setNameMessage("Введите полное имя");
-            setNameClass("error");
-            isValid = false;
-        } else {
-            setNameMessage("");
-            setNameClass("active");
-        }
-
-        if (isValid) {
-            alert("Форма успешно отправлена:");
-        }
-    };
+        const [formData, setFormData] = useState({
+            phone: "",
+            name: '',
+        });
+        const [errors, setErrors] = useState({
+            phone: "",
+            name: '',
+        });
+        const [touched, setTouched] = useState({
+            phone: "",
+            name: '',
+        });
 
 
-    return <div className={`callBack-block G-center ${active ? 'active' : ''}`}>
-        <div className='callBack-cnt '>
-            <div className='callBack-body G-align-start'>
-                <div className='callBack-tools G-flex-column'>
-                    <div onClick={close} className='callBack-close'>
-                        <img src={closeImg} alt=""/>
+        const validatePhoneNumber = (phone) => /^\+7\d{1,15}$/.test(phone);
+
+
+        const handleChange = (e) => {
+            const {name, value} = e.target;
+            setFormData({...formData, [name]: value});
+            setTouched((prev) => ({...prev, [name]: true}));
+
+            if (name === "phone") {
+                if (!value) {
+                    errors.phone = "";
+                } else if (!validatePhoneNumber(value)) {
+                    errors.phone = "Неверный формат номера";
+                } else {
+                    errors.phone = "";
+                }
+
+            }
+            if (name === "name") {
+                if (value) {
+                    errors.name = "";
+                }
+
+            }
+
+            setErrors((prev) => ({...prev, ...errors}));
+
+        };
+
+        const handleSubmit = (e) => {
+            e.preventDefault()
+            if (!checked) {
+                alert("Вы должны согласиться с политикой конфиденциальности!");
+                return;
+            }
+            let newErrors = {
+                phone: formData.phone ? "" : "Напишите номер ",
+                name: formData.name ? "" : "Напишите имя  ",
+
+            };
+            setErrors(newErrors);
+            setTouched({phone: true});
+            if (Object.values(newErrors).some((error) => error)) return;
+            alert("Ваша заявка отправлено  !");
+
+        };
+
+
+        return <div className={`callBack-block G-center ${active ? 'active' : ''}`}>
+            <div onClick={close} className='callBack-bg'></div>
+
+            <div className='callBack-cnt '>
+                <div className='callBack-body G-align-start'>
+                    <div className='callBack-tools G-flex-column'>
+                        <div onClick={close} className='callBack-close'>
+                            <img src={closeImg} alt=""/>
+                        </div>
+                        <p className='callBack-text'>
+                            Заказать обратный звонок
+                        </p>
                     </div>
-                    <p className='callBack-text'>
-                        Заказать обратный звонок
-                    </p>
+                    <form className='callBack-form'>
+                        <h3 className='callBack-title'>Рабочий номер телефона</h3>
+                        <div className='callBack-inputs G-flex-column '>
+                            <div className='form-input G-flex-column'>
+                                {errors.phone && errors.phone.length &&
+                                    <div className="form-input-title">
+                                        <span>{errors?.phone}</span>
+                                    </div>
+                                }
+                                <label
+                                    className={`form-label ${
+                                        formData.phone && !errors.phone
+                                            ? "active"
+                                            : errors.phone
+                                                ? "error"
+                                                : ""
+                                    }`}>
+                                    <input
+                                        name='phone'
+                                        type="text"
+                                        value={formData.phone}
+                                        onChange={handleChange}
+                                        placeholder='+7 (918) 000 00-00'
+                                    />
+                                </label>
+                            </div>
+
+                            <div className='form-input G-flex-column'>
+                                {errors.name && errors.name.length &&
+                                    <div className="form-input-title">
+                                        <span>{errors?.name}</span>
+                                    </div>
+                                }
+
+                                <label
+                                    className={`form-label ${
+                                        formData.name && !errors.name
+                                            ? "active"
+                                            : errors.name
+                                                ? "error"
+                                                : ""
+                                    }`}>
+                                    <input
+                                        name='name'
+                                        type="text"
+                                        value={formData.name}
+                                        onChange={handleChange}
+                                        placeholder='Фамилия Имя Отчество'/>
+                                </label>
+                            </div>
+
+                            <div className={`form-agree agree-box G-align-center ${checked ? "checked" : ""}`}
+                                 onClick={() => setChecked(!checked)}>
+                                <div className='agree-icon'>
+                                    <img src={box} alt=""/>
+                                </div>
+                                <div className='callBack-agree-text  '>
+                                    Вы согласны с <Link to='/'>политикой конфиденциальности</Link>
+                                </div>
+
+                            </div>
+                            <div className='callBack-btn-cnt G-align-start'>
+                                <button onClick={handleSubmit} className='callBack-btn'>Заказать звонок</button>
+                            </div>
+
+                        </div>
+                    </form>
                 </div>
-                <form className='callBack-form'>
-                    <h3 className='callBack-title'>Рабочий номер телефона</h3>
-                    <div className='callBack-inputs G-flex-column '>
-                        <div className='form-input G-flex-column'>
-                            {phoneClass &&
-                                <div className="form-input-title">
-                                    <span>{phoneMessage}</span>
-                                </div>
-                            }
 
-
-                            <label className={`form-label ${phoneClass}`}>
-                                <input
-                                    name='number'
-                                    type="number"
-                                    value={phone}
-                                    onChange={(e) => setPhone(e.target.value)}
-                                    placeholder='+7 (918) 000 00-00'/>
-                            </label>
-                        </div>
-
-                        <div className='form-input G-flex-column'>
-                            {nameClass &&
-                                <div className="form-input-title">
-                                    <span>{nameMessage}</span>
-                                </div>
-                            }
-                            <label className={`form-label ${nameClass}`}>
-                                <input
-                                    name='name'
-                                    type="text"
-                                    value={name}
-
-                                    onChange={(e) => setName(e.target.value)}
-                                    placeholder='Фамилия Имя Отчество'/>
-                            </label>
-                        </div>
-
-
-                        <div className={`form-agree agree-box G-align-center ${checked ? "checked" : ""}`}
-                             onClick={() => setChecked(!checked)}>
-                            <div className='agree-icon'>
-                                <img src={box} alt=""/>
-                            </div>
-                            <div className='callBack-agree-text  '>
-                                Вы согласны с <Link to='/'>политикой конфиденциальности</Link>
-                            </div>
-
-                        </div>
-
-                        <div className='callBack-btn-cnt G-align-start'>
-                            <button onClick={handleSubmit} className='callBack-btn'>Заказать звонок</button>
-                        </div>
-
-                    </div>
-                </form>
-            </div>
-
-            <div className='callBack-fon'>
-                <img src={incoming} alt=""/>
+                <div className='callBack-fon'>
+                    <img src={incoming} alt=""/>
+                </div>
             </div>
         </div>
-    </div>
 
 
-};
+    }
+;
 
 export default CallBack;

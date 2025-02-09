@@ -42,6 +42,7 @@ const Reset = ({close}) => {
 
 
     const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
     const validatePassword = (password) => password.length >= 6;
 
     const handleChange = (e) => {
@@ -160,7 +161,8 @@ const Reset = ({close}) => {
                     <div className='form-input-title G-align-start'>
                         <span>{errors.confirmPassword || "Повторите пароль"}</span>
                     </div>
-                    <label className={`password-label form-label ${errors.confirmPassword ? "error" : touched.confirmPassword ? "active" : ""}`}>
+                    <label
+                        className={`password-label form-label ${errors.confirmPassword ? "error" : touched.confirmPassword ? "active" : ""}`}>
                         <input
                             name="confirmPassword"
                             type={isVisible ? 'text' : 'password'}
