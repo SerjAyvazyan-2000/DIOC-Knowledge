@@ -83,12 +83,12 @@ const Login = ({close}) => {
             {!reset ? <>
 
                 <div className='auth-header'>
-                    <div onClick={close} className='mobile-back-btn G-align-center'>
-                        <div className='back-icon'>
-                            <img src={arrow} alt=""/>
-                        </div>
-                        <span>Назад</span>
-                    </div>
+                    {/*<div onClick={close} className='mobile-back-btn G-align-center'>*/}
+                    {/*    <div className='back-icon'>*/}
+                    {/*        <img src={arrow} alt=""/>*/}
+                    {/*    </div>*/}
+                    {/*    <span>Назад</span>*/}
+                    {/*</div>*/}
                     <div className='auth-logo'>
                         <img src={logo} alt=""/>
                     </div>

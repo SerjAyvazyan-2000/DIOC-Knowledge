@@ -367,18 +367,19 @@
   color: variables.$light-gray;
 }
 
-.mobile-icon-email{
+.mobile-icon-email {
   position: absolute;
   top: 12px;
   left: 12px;
-  display:none;
+  display: none;
   width: 36px;
   height: 36px;
 
-  @include mixin.screen-max-width-576{
-    display:block;
+  @include mixin.screen-max-width-576 {
+    display: block;
   }
 }
+
 .subscribe-label {
   width: 100%;
   height: 40px;
@@ -404,13 +405,11 @@
     }
 
 
-
-
     &:focus {
       border: 1px solid variables.$primary;
     }
 
-    @include mixin.screen-max-width-576{
+    @include mixin.screen-max-width-576 {
       padding: 0 10px 0 42px;
 
     }
@@ -479,19 +478,22 @@
 
 
 }
-.choose-desktop-title{
 
-  @include mixin.screen-max-width-576{
+.choose-desktop-title {
+
+  @include mixin.screen-max-width-576 {
     display: none;
 
   }
 }
-.choose-mobile-title{
-  @include mixin.screen-max-width-576{
+
+.choose-mobile-title {
+  @include mixin.screen-max-width-576 {
     display: block;
 
   }
 }
+
 .convenient-columns {
   gap: 26px;
 }
@@ -572,9 +574,9 @@
   right: 8px;
   max-width: 231px;
 
-  @include mixin.screen-max-width-576{
+  @include mixin.screen-max-width-576 {
     right: -10px;
-    border-radius: 22px 0 0  22px;
+    border-radius: 22px 0 0 22px;
     bottom: 62px;
 
   }
@@ -824,6 +826,64 @@
 
 
 }
+.about-us-arrow{
+  width:48px;
+  height:48px;
+  border-radius: 99px;
+  background: var(--control-ghost-bg, rgba(250, 250, 250, 0.16));
+
+
+}
+.about-us-arrows{
+  display:flex;
+  position:absolute;
+  left:0;
+  top:40%;
+  width:100%;
+  transform:translate(0,-50%);
+
+  @include mixin.screen-max-width-1400{
+    top: unset;
+    bottom: -100px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    gap:17px;
+
+
+  }
+
+}
+.arrow-1{
+  left:-70px;
+  position:absolute;
+  cursor:pointer;
+  transition:.3s;
+  &:hover{
+    opacity:.8;
+  }
+  @include mixin.screen-max-width-1400{
+    position:initial;
+
+  }
+}
+.arrow-2{
+  right: -70px;
+  position: absolute;
+  transform:rotate(180deg);
+  cursor:pointer;
+  transition:.3s;
+
+  &:hover{
+    opacity:.8;
+  }
+  @include mixin.screen-max-width-1400{
+    position:initial;
+
+  }
+
+}
+
 
 .about-us-section {
   position: relative;
@@ -831,6 +891,10 @@
   border-right: none;
   border-left: none;
   padding: 48px 0;
+  @include mixin.screen-max-width-1400{
+    padding: 48px 0 100px 0 ;
+
+  }
 
 }
 
@@ -912,8 +976,9 @@
     max-width: 166px;
 
   }
-  @include mixin.screen-max-width-576{
-    gap:6px;
+
+  @include mixin.screen-max-width-576 {
+    gap: 6px;
   }
 }
 
@@ -1222,6 +1287,10 @@
   margin-top: 8px;
 }
 
+.steps-swiper {
+  max-width: 1200px;
+  width: 100%;
+}
 
 .agree-icon {
   border-radius: 4px;

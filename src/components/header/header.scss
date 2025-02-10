@@ -83,6 +83,12 @@ header.moved {
     align-items: stretch;
     gap: 37px;
 
+
+  }
+  @include mixin.screen-max-width-576{
+    justify-content: flex-start;
+    width: 100%;
+    margin: 40px 0 0 80px;
   }
 }
 

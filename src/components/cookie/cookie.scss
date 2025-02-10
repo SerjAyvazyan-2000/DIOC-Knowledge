@@ -22,6 +22,11 @@
     opacity: 0;
     visibility: hidden;
   }
+  @include mixin.screen-max-width-576{
+    max-width: 372px;
+    padding: 24px 20px;
+
+  }
 
 }
 
@@ -71,7 +76,7 @@
     padding: 8px 20px;
     border-radius: 99px;
     background: variables.$dark-gray3;
-    color: variables.$dark-gray4;
+    color: variables.$white;
     text-align: center;
     font-size: 16px;
     font-style: normal;

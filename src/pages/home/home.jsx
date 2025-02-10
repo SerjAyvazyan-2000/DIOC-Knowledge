@@ -39,6 +39,7 @@ import feedbackMedia from '../../assets/images/feedbackMedia.png'
 import required from '../../assets/images/required.svg'
 import box from '../../assets/images/box.svg'
 import iconMail from '../../assets/images/IconMail.svg'
+import IconArrowLeft from '../../assets/images/IconArrowLeft.svg'
 
 
 import {Link} from "react-router-dom";
@@ -239,7 +240,7 @@ const Home = () => {
                                 <h3 className='block-title'>Настраиваемые шаблоны</h3>
                                 <p className='block-text'>Начните с готовых шаблонов или создайте свои.</p>
                             </div>
-                            <div className='choose-item-img block-img'>
+                            <div className='choose-item-img block-img G-flex'>
                                 <img className='img-desktop' src={chooseImg1} alt=""/>
                                 <img className='img-mobile' src={chooseImg1Mobile} alt=""/>
 
@@ -252,7 +253,7 @@ const Home = () => {
                                 <h3 className='block-title'>Централизованные знания</h3>
                                 <p className='block-text'>Храните все знания вашей команды в одном месте.</p>
                             </div>
-                            <div className='choose-item-img block-img'>
+                            <div className='choose-item-img block-img G-flex'>
                                 <img className='img-desktop' src={chooseImg2} alt=""/>
                                 <img className='img-mobile' src={chooseImg2Mobile} alt=""/>
 
@@ -270,7 +271,7 @@ const Home = () => {
                     <div className='subscribe-text-cnt'>
                         <h2 className='subscribe-text'>
                             Не пропустите наши лучшие материалы!
-                            <span className='desktop-bold-text'><span className='mobile-bold-text'>Подпишитесь на нашу почтовую рассылку</span> о
+                            <span className='desktop-bold-text'><span className='mobile-bold-text'> Подпишитесь на нашу почтовую рассылку</span> о
                             бизнесе
                             и организации процессов</span>
                         </h2>
@@ -329,7 +330,7 @@ const Home = () => {
                                     <h3 className='block-title'>Расширенный поиск</h3>
                                     <p className='block-text'>Находите нужное быстро с помощью мощного поиска.</p>
                                 </div>
-                                <div className='choose-item-img block-img'>
+                                <div className='choose-item-img block-img G-flex'>
                                     <img className='img-desktop' src={convenientImg} alt=""/>
                                     <img className='img-mobile' src={convenientImgMobile} alt=""/>
 
@@ -357,7 +358,7 @@ const Home = () => {
                                     <p className='block-text'>Отслеживайте изменения и возвращайтесь к предыдущим
                                         версиям.</p>
                                 </div>
-                                <div className='choose-item-img block-img'>
+                                <div className='choose-item-img block-img G-flex'>
                                     <img className='img-desktop' src={convenientImg2} alt=""/>
                                     <img className='img-mobile' src={convenientImg2Mobile} alt=""/>
 
@@ -374,7 +375,7 @@ const Home = () => {
                                     <p className='block-text'>Контролируйте, кто может просматривать и редактировать
                                         ваши страницы.</p>
                                 </div>
-                                <div className='choose-item-img block-img'>
+                                <div className='choose-item-img block-img G-flex'>
                                     <img className='img-desktop' src={convenientImg3} alt=""/>
                                     <img className='img-mobile' src={convenientImg3Mobile} alt=""/>
 
@@ -388,7 +389,7 @@ const Home = () => {
                                         Будьте в курсе событий с помощью уведомлений в реальном времени.
                                     </p>
                                 </div>
-                                <div className='choose-item-img block-img'>
+                                <div className='choose-item-img block-img G-flex'>
                                     <img className='img-desktop' src={convenientImg4} alt=""/>
                                     <img className='img-mobile' src={convenientImg4Mobile} alt=""/>
 
@@ -584,8 +585,21 @@ const Home = () => {
                         )
                     ))}
 
+                    <div className='about-us-arrows'>
+                        {steps.map((step, index) => (
+                            <div
+                                key={step.id}
+                                className={`about-us-arrow arrow-${index + 1} G-center ${activeStep === step.id ? "active" : ""}`}
+                                onClick={() => setActiveStep(step.id)}
+
+                            >
+                                <img src={IconArrowLeft} alt=""/>
+                            </div>
+                        ))}
+                    </div>
 
                 </div>
+
             </div>
 
 
@@ -605,7 +619,7 @@ const Home = () => {
 
                     <div className='faq-items G-flex-column'>
                         <div className='faq-item G-flex-column'>
-                            <h2 className='faq-item-title'>Возможно ли использование системы несколькими сотрудниками с
+                        <h2 className='faq-item-title'>Возможно ли использование системы несколькими сотрудниками с
                                 разными ролями?</h2>
                             <p className='faq-sub-title'>Да, вы можете разграничить права доступа к отдельным файлам как
                                 для групп пользователей,

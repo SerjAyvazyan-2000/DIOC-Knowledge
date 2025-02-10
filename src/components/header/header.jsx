@@ -67,7 +67,7 @@ const Header = () => {
 
                     <div className='header-body G-justify-between'>
                         <div className='header-menu G-align-center'>
-                            <Link className='header-logo' to="/">
+                            <Link className='header-logo G-flex' to="/">
                                 <img src={logo} alt=""/>
                             </Link>
                             <nav className={`menu ${isActive ? "active" : ""}`}>
