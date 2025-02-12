@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import './home.scss'
 import lock from '../../assets/images/IconLock.svg'
 import IconTree from '../../assets/images/IconTree.svg'
@@ -40,10 +40,14 @@ import required from '../../assets/images/required.svg'
 import box from '../../assets/images/box.svg'
 import iconMail from '../../assets/images/IconMail.svg'
 import IconArrowLeft from '../../assets/images/IconArrowLeft.svg'
-
-
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
 import {Link} from "react-router-dom";
 import Cookie from "../../components/cookie/cookie.jsx";
+import {Swiper, SwiperSlide} from "swiper/react";
+import {Navigation, Pagination} from "swiper/modules";
 
 
 const Home = () => {
@@ -51,8 +55,10 @@ const Home = () => {
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("Электронная почта");
     const [labelClass, setLabelClass] = useState("");
-    const [activeStep, setActiveStep] = useState(1);
     const [placeholder, setPlaceholder] = useState("mail@youcompany.com");
+    const prevRef = useRef(null);
+    const nextRef = useRef(null);
+    const swiperRef = useRef(null);
 
 
     const validateEmail = (email) => {
@@ -85,28 +91,6 @@ const Home = () => {
         }
     };
 
-    const steps = [
-        {
-            id: 1,
-            title: "Сфера обслуживания",
-            clue: "Более 500 сотрудников",
-            text: "— Внедрили решение и снизили стоимость обучения бариста",
-            effects: [
-                {value: "+120%", label: "Скорость обучения"},
-                {value: "+50%", label: "Эффективность обслуживания"}
-            ]
-        },
-        {
-            id: 2,
-            title: "НПЗ",
-            clue: "Более 2000 сотрудников",
-            text: "— Внедрили систему и упростили обслуживание оборудования благодаря умному поиску по содержанию",
-            effects: [
-                {value: "+50%", label: "Эффективность обслуживания"},
-                {value: "+10%", label: "Эффективность производства"}
-            ]
-        }
-    ];
 
     useEffect(() => {
         const handleResize = () => {
@@ -122,6 +106,16 @@ const Home = () => {
         window.addEventListener("resize", handleResize);
 
         return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+
+    useEffect(() => {
+        if (swiperRef.current) {
+            swiperRef.current.swiper.params.navigation.prevEl = prevRef.current;
+            swiperRef.current.swiper.params.navigation.nextEl = nextRef.current;
+            swiperRef.current.swiper.navigation.init();
+            swiperRef.current.swiper.navigation.update();
+        }
     }, []);
 
     return <>
@@ -276,7 +270,8 @@ const Home = () => {
                             и организации процессов</span>
                         </h2>
                         <h2 className='subscribe-text text-mobile'>
-                            Не пропустите наши лучшие материалы! <span className='mobile-bold-text'>Подписывайтесь на рассылку,</span> и мы подготовим для вас
+                            Не пропустите наши лучшие материалы! <span className='mobile-bold-text'>Подписывайтесь на рассылку,</span> и
+                            мы подготовим для вас
                             интересные письма.
                         </h2>
 
@@ -361,7 +356,8 @@ const Home = () => {
                             <div className='convenient-big-item block-item'>
                                 <div className='choose-item-texts block-texts'>
                                     <h3 className='block-title'>История страниц</h3>
-                                    <p className='block-text'>Отслеживайте <span className='mobile-text-wrap'>изменения и</span> возвращайтесь к предыдущим
+                                    <p className='block-text'>Отслеживайте <span className='mobile-text-wrap'>изменения и</span> возвращайтесь
+                                        к предыдущим
                                         версиям.</p>
                                 </div>
                                 <div className='choose-item-img block-img G-flex'>
@@ -558,51 +554,75 @@ const Home = () => {
             <div className='container'>
                 <div className='about-us-body G-flex-column'>
 
-                    <div className="about-us-steps G-align-center">
-                        {steps.map((step) => (
-                            <div
-                                key={step.id}
-                                className={`about-us-step ${activeStep === step.id ? "active" : ""}`}
-                                onClick={() => setActiveStep(step.id)}
-                            ></div>
-                        ))}
-                    </div>
-                    {steps.map((step) => (
-                        activeStep === step.id && (
-                            <div key={step.id} className={`about-us-step${step.id}`}>
+
+                    <Swiper
+                        spaceBetween={30}
+                        ref={swiperRef}
+
+                        slidesPerView={1}
+                        className='step-swiper'
+                        modules={[Navigation, Pagination]}
+                        pagination={{clickable: true}}
+                        navigation={{
+                            prevEl: ".arrow-1",
+                            nextEl: ".arrow-2",
+                        }}
+
+                    >
+                        <SwiperSlide>
+                            <div className={`about-us-step1`}>
                                 <div className="about-us-texts G-flex-column">
-                                    <h2 className="about-title">{step.title}</h2>
-                                    <p className="about-us-clue">{step.clue}</p>
-                                    <p className="about-us-text">{step.text}</p>
+                                    <h2 className="about-title">НПЗ</h2>
+                                    <p className="about-us-clue">Более 2000 сотрудников</p>
+                                    <p className="about-us-text">— Внедрили систему и упростили обслуживание
+                                        оборудования <span className='desktop-text-wrap'>благодаря умному поиску по содержанию</span></p>
                                     <p className="about-us-clue">Какой эффект дало</p>
                                     <div className="about-us-assessment G-align-center">
-                                        {step.effects.map((effect, index) => (
-                                            <>
-                                                <h3>{effect.value}</h3>
-                                                <p>{effect.label}</p>
-                                            </>
-                                        ))}
+                                        <h3>+50%</h3>
+                                        <p>Эффективность <span className='text-wrap'>обслуживания</span></p>
+                                        <h3>+10%</h3>
+                                        <p>Эффективность <span className='text-wrap'>производства</span></p>
                                     </div>
                                 </div>
                                 <div className="about-us-comments">
                                     <p>Комментарий</p>
                                 </div>
                             </div>
-                        )
-                    ))}
+                        </SwiperSlide>
 
-                    <div className='about-us-arrows'>
-                        {steps.map((step, index) => (
-                            <div
-                                key={step.id}
-                                className={`about-us-arrow arrow-${index + 1} G-center ${activeStep === step.id ? "active" : ""}`}
-                                onClick={() => setActiveStep(step.id)}
-
-                            >
-                                <img src={IconArrowLeft} alt=""/>
+                        <SwiperSlide>
+                            <div className={`about-us-step2`}>
+                                <div className="about-us-texts G-flex-column">
+                                    <h2 className="about-title">Сфера обслуживания</h2>
+                                    <p className="about-us-clue">Более 2000 сотрудников</p>
+                                    <p className="about-us-text">
+                                        — Внедрили решение и снизили стоимость обучения бариста
+                                    </p>
+                                    <p className="about-us-clue">Какой эффект дало</p>
+                                    <div className="about-us-assessment G-align-center">
+                                        <h3>+120%</h3>
+                                        <p>Скорость <span className='text-wrap'>обучения</span></p>
+                                        <h3>+50%</h3>
+                                        <p>Эффективность <span className='text-wrap'>обслуживания</span></p>
+                                    </div>
+                                </div>
+                                <div className="about-us-comments">
+                                    <p>Комментарий</p>
+                                </div>
                             </div>
-                        ))}
+                        </SwiperSlide>
+
+
+                    </Swiper>
+                    <div className='about-us-arrows'>
+                        <div ref={prevRef} className='about-us-arrow arrow-1 G-center'>
+                            <img src={IconArrowLeft} alt=""/>
+                        </div>
+                        <div ref={nextRef} className='about-us-arrow arrow-2 G-center'>
+                            <img src={IconArrowLeft} alt=""/>
+                        </div>
                     </div>
+
 
                 </div>
 
@@ -625,7 +645,7 @@ const Home = () => {
 
                     <div className='faq-items G-flex-column'>
                         <div className='faq-item G-flex-column'>
-                        <h2 className='faq-item-title'>Возможно ли использование системы несколькими сотрудниками с
+                            <h2 className='faq-item-title'>Возможно ли использование системы несколькими сотрудниками с
                                 разными ролями?</h2>
                             <p className='faq-sub-title'>Да, вы можете разграничить права доступа к отдельным файлам как
                                 для групп пользователей,
