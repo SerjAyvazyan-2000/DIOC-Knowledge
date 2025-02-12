@@ -53,7 +53,23 @@ const Header = () => {
         }, [callBack, login, register]);
 
         const toggleBurger = () => {
-            setIsActive((prev) => !prev);
+            if (login){
+                setLogin(!login);
+            }else if(register){
+                setRegister(!register);
+
+            }else if(registerStep2){
+                setRegisterStep2((prev) => !prev);
+
+            }else if(reset){
+                setReset((prev) => !prev);
+
+            }else {
+                setIsActive((prev) => !prev);
+            }
+
+
+
         };
 
         const handleReset = () => {

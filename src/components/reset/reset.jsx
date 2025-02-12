@@ -94,6 +94,14 @@ const Reset = ({close}) => {
         alert("Пароль успешно сброшен!");
     };
 
+    const handleResetCod = (e) => {
+        e.preventDefault()
+         if (validateEmail(formData.email)){
+             alert('Код отправлен ')
+             setFormData({...formData,email: ''});
+         }
+    }
+
 
     return <div className='reset-box G-flex-column'>
         <div className='auth-header'>
@@ -122,7 +130,7 @@ const Reset = ({close}) => {
                         />
                     </label>
                 </div>
-                <div className='reset-btn-send'>
+                <div onClick={(e)=>handleResetCod(e)} className='reset-btn-send'>
                     <button className='email-btn'>Отправить код</button>
                 </div>
 
@@ -136,48 +144,7 @@ const Reset = ({close}) => {
                 </div>
 
 
-                {/*<div className='form-input G-flex-column'>*/}
-                {/*    <div className='form-input-title G-align-start'>*/}
-                {/*        <span>{errors.password || "Придумайте новый пароль"}</span>*/}
-                {/*    </div>*/}
-                {/*    <label*/}
-                {/*        className={`password-label form-label ${errors.password ? "error" : touched.password ? "active" : ""}`}>*/}
-                {/*        <input*/}
-                {/*            name='password'*/}
-                {/*            type={isVisible ? 'text' : 'password'}*/}
-                {/*            placeholder='Новый пароль'*/}
-                {/*            value={formData.password}*/}
-                {/*            onChange={handleChange}*/}
-                {/*        />*/}
 
-                {/*        <div onClick={toggleVisibility} className='eye'>*/}
-                {/*            <img src={eye} alt=""/>*/}
-                {/*        </div>*/}
-                {/*    </label>*/}
-
-                {/*</div>*/}
-
-
-                {/*<div className='form-input G-flex-column'>*/}
-                {/*    <div className='form-input-title G-align-start'>*/}
-                {/*        <span>{errors.confirmPassword || "Повторите пароль"}</span>*/}
-                {/*    </div>*/}
-                {/*    <label*/}
-                {/*        className={`password-label form-label ${errors.confirmPassword ? "error" : touched.confirmPassword ? "active" : ""}`}>*/}
-                {/*        <input*/}
-                {/*            name="confirmPassword"*/}
-                {/*            type={isVisible ? 'text' : 'password'}*/}
-                {/*            placeholder='Пароль'*/}
-                {/*            value={formData.confirmPassword}*/}
-                {/*            onChange={handleChange}*/}
-                {/*        />*/}
-
-                {/*        <div onClick={toggleVisibility} className='eye'>*/}
-                {/*            <img src={eye} alt=""/>*/}
-                {/*        </div>*/}
-                {/*    </label>*/}
-
-                {/*</div>*/}
 
 
                 <PasswordField

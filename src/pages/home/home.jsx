@@ -265,16 +265,22 @@ const Home = () => {
         </section>
 
 
-        <section className='subscribe-section section'>
+        <section className='subscribe-section '>
             <div className='container'>
                 <div className='subscribe-body G-align-start'>
                     <div className='subscribe-text-cnt'>
-                        <h2 className='subscribe-text'>
+                        <h2 className='subscribe-text text-desktop'>
                             Не пропустите наши лучшие материалы!
                             <span className='desktop-bold-text'><span className='mobile-bold-text'> Подпишитесь на нашу почтовую рассылку</span> о
                             бизнесе
                             и организации процессов</span>
                         </h2>
+                        <h2 className='subscribe-text text-mobile'>
+                            Не пропустите наши лучшие материалы! <span className='mobile-bold-text'>Подписывайтесь на рассылку,</span> и мы подготовим для вас
+                            интересные письма.
+                        </h2>
+
+
                     </div>
 
                     <div className='subscribe-tools'>
@@ -319,10 +325,10 @@ const Home = () => {
         </section>
 
 
-        <section className='why-choose-section section'>
+        <section className='convenient-section '>
             <div className='container'>
                 <div className='why-choose-body'>
-                    <h2 className='section-title'>Больше удобных функций</h2>
+                    <h2 className='section-title'>Больше <span className='mobile-text-wrap'>удобных</span> функций</h2>
                     <div className='convenient-columns G-flex-column'>
                         <div className='why-choose-cnt convenient-column G-align-center block-cnt'>
                             <div className='convenient-average-item block-item'>
@@ -355,7 +361,7 @@ const Home = () => {
                             <div className='convenient-big-item block-item'>
                                 <div className='choose-item-texts block-texts'>
                                     <h3 className='block-title'>История страниц</h3>
-                                    <p className='block-text'>Отслеживайте изменения и возвращайтесь к предыдущим
+                                    <p className='block-text'>Отслеживайте <span className='mobile-text-wrap'>изменения и</span> возвращайтесь к предыдущим
                                         версиям.</p>
                                 </div>
                                 <div className='choose-item-img block-img G-flex'>

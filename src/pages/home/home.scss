@@ -216,11 +216,25 @@
 }
 
 .why-choose-section {
-  @include mixin.screen-max-width-576 {
-    padding: 48px 0;
-  }
-}
 
+}
+.subscribe-section{
+  padding: 48px 0;
+
+  @include mixin.screen-max-width-576{
+    padding: 24px 0;
+
+  }
+
+}
+.convenient-section{
+  padding: 48px 0;
+  @include mixin.screen-max-width-576{
+    padding: 28px 0;
+
+  }
+
+}
 .block-img {
   position: absolute;
   left: 0;
@@ -241,6 +255,8 @@
   line-height: 36px;
   color: variables.$white;
 
+
+
 }
 
 .block-text {
@@ -249,6 +265,8 @@
   line-height: 24px;
   color: variables.$light-gray;
   margin-top: 8px;
+
+
 
 
 }
@@ -274,7 +292,17 @@
     display: block;
   }
 }
-
+.text-desktop{
+  @include mixin.screen-max-width-576{
+    display:none;
+  }
+}
+.text-mobile{
+  display:none;
+  @include mixin.screen-max-width-576{
+    display:block;
+  }
+}
 .subscribe-body {
   gap: 16px;
   position: relative;
@@ -513,7 +541,7 @@
   width: 100%;
 
   @include mixin.screen-max-width-576 {
-    top: 168px;
+    top: 228px;
 
   }
 
@@ -575,9 +603,9 @@
   max-width: 231px;
 
   @include mixin.screen-max-width-576 {
-    right: -10px;
+    right: -50px;
     border-radius: 22px 0 0 22px;
-    bottom: 62px;
+    bottom: 0;
 
   }
 
@@ -724,6 +752,12 @@
   font-weight: 700;
   line-height: 86px;
   letter-spacing: -2.16px;
+
+  @include mixin.screen-max-width-400{
+    font-size: 52px;
+    line-height: 56px;
+
+  }
 }
 
 .rate-from {
@@ -824,6 +858,10 @@
   position: relative;
   z-index: 2;
 
+  @include mixin.screen-max-width-576{
+    padding: 24px 12px;
+
+  }
 
 }
 .about-us-arrow{
@@ -844,7 +882,7 @@
 
   @include mixin.screen-max-width-1400{
     top: unset;
-    bottom: -100px;
+    bottom: -90px;
     justify-content: center;
     align-items: center;
     display: flex;
@@ -892,7 +930,7 @@
   border-left: none;
   padding: 48px 0;
   @include mixin.screen-max-width-1400{
-    padding: 48px 0 100px 0 ;
+    padding: 48px 0 90px 0 ;
 
   }
 
@@ -964,6 +1002,10 @@
     font-weight: 700;
     line-height: 57.6px;
     letter-spacing: -0.96px;
+    @include mixin.screen-max-width-576{
+      font-size: 44px;
+
+    }
   }
 
   p {
@@ -974,6 +1016,11 @@
     font-weight: 400;
     line-height: 28px;
     max-width: 166px;
+
+    @include mixin.screen-max-width-576{
+      font-size: 16px;
+      line-height: normal;
+    }
 
   }
 
@@ -1030,7 +1077,7 @@
 
   @include mixin.screen-max-width-576 {
     top: 0;
-    right: 20px;
+    right: -40px;
   }
 }
 
@@ -1042,6 +1089,12 @@
   font-weight: 400;
   line-height: 64px;
   letter-spacing: -0.25px;
+
+  @include mixin.screen-max-width-400{
+    line-height: 38px;
+    font-size: 32px;
+
+  }
 }
 
 .faq-items {
@@ -1069,6 +1122,10 @@
   font-style: normal;
   font-weight: 400;
   line-height: 32px;
+  @include mixin.screen-max-width-400{
+    font-size: 20px;
+    line-height: 22px;
+  }
 }
 
 .faq-sub-title {
@@ -1078,6 +1135,10 @@
   font-style: normal;
   font-weight: 400;
   line-height: 28px;
+  @include mixin.screen-max-width-400{
+    font-size: 16px;
+    line-height: normal;
+  }
 }
 
 .feedback-body {
@@ -1118,10 +1179,7 @@
 .section {
   padding: 48px 0;
 
-  @include mixin.screen-max-width-576 {
-    padding: 28px 0;
 
-  }
 }
 
 .section-title {
@@ -1132,6 +1190,8 @@
   font-weight: 500;
   line-height: 52px;
   letter-spacing: -0.8px;
+
+
 }
 
 .block-cnt {
@@ -1145,6 +1205,12 @@
   font-style: normal;
   font-weight: 400;
   line-height: 52px;
+
+  @include mixin.screen-max-width-400{
+    font-size: 35px;
+    line-height: 42px;
+
+  }
 }
 
 .form-sub-title {
