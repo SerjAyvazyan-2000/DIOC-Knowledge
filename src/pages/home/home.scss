@@ -281,16 +281,25 @@
 }
 
 .img-desktop {
-  @include mixin.screen-max-width-576 {
+  //@include mixin.screen-max-width-576 {
+  //  display: none;
+  //}
+  @media (max-width: 429px) {
     display: none;
+
   }
 }
 
 .img-mobile {
   display: none;
-  @include mixin.screen-max-width-576 {
+  
+  @media (max-width: 429px) {
     display: block;
+
   }
+  //@include mixin.screen-max-width-576 {
+  //  display: block;
+  //}
 }
 
 .text-desktop {
@@ -498,12 +507,10 @@
 
   img {
     @include mixin.screen-max-width-576 {
-      height: 300px;
       width: 100%;
     }
 
     @media (max-width: 450px) {
-      height: max-content;
     }
   }
 
