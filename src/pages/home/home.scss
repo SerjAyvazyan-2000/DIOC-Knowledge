@@ -1467,3 +1467,41 @@
 
 
 //General style  end
+
+.form-error-message {
+  color: #ff4d4f;
+  background-color: #fff2f0;
+  border: 1px solid #ffccc7;
+  padding: 8px 15px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+.form-label.error,
+.textarea-label.error {
+  input,
+  textarea {
+    border-color: #ff4d4f;
+    background-color: #fff2f0;
+    color: #000;
+  }
+}
+
+.field-error-message {
+  color: #ff4d4f;
+  font-size: 12px;
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+.form-agree.error {
+  border: 1px solid #ff4d4f;
+  background-color: #fff2f0;
+  border-radius: 4px;
+  padding: 8px;
+  
+  .agree-text {
+    color: #000;
+  }
+}
