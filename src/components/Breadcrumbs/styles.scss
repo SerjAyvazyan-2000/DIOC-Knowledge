@@ -1,0 +1,43 @@
+.breadcrumbs {
+  padding: 32px;
+  
+  &-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  &-list {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  &-item {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #808080;
+    
+    a {
+      color: #808080;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      
+      &:hover {
+        color: #ffffff;
+      }
+    }
+  }
+  
+  &-separator {
+    margin: 0 10px;
+    color: #808080;
+  }
+  
+  &-current {
+    color: #ffffff;
+  }
+} 
